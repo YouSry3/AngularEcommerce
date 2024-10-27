@@ -36,14 +36,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this._Authanction.getAuthSubject().subscribe({
       next:(status)=>{
-        console.log(status);
 
         this.isAthanction = status;
       }
     })
     this.dropdownVisible = false;
     this.user ={
-      email:`${localStorage.getItem("TokenE")}`,
+
+      email: localStorage.getItem("TokenA")?`${localStorage.getItem("TokenA")}`:`${localStorage.getItem("TokenE")}`,
     }
 
 
@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
 
     this._API_ApiCartsService.getCurrentCart().subscribe({
       next:(UPdateCards)=>{
-       console.log(UPdateCards);
 
         this.Carts =UPdateCards;
       }

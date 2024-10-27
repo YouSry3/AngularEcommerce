@@ -20,6 +20,7 @@ export class ApiUsersService {
      }
 
   }
+  
 
   SignUp(user:Iuser){
     return this._HttpClient.post(`http://localhost:3000/Users`,user)
@@ -35,16 +36,42 @@ export class ApiUsersService {
   }
 
   Login(user:Iuser[]):void{
-    console.log(`login in Api user ${user}`);
+    if(user[0].Email == "admin@admin.com"){
+      console.log(`Admin of Application`);
 
-    localStorage.setItem("TokenE",user[0].Email);
-    localStorage.setItem("TokenId",`${user[0].id}` )
-    this.AuthSubject.next(true);
+      localStorage.setItem("TokenA",user[0].Email);
+
+      this.AuthSubject.next(true);
+
+
+    }else{
+      console.log(`login in Api user ${user}`);
+
+          localStorage.setItem("TokenE",user[0].Email);
+
+          localStorage.setItem("TokenId",`${user[0].id}` )
+          this.AuthSubject.next(true);
+
+    }
 
   };
+  DoYouAdmin():boolean{
+
+
+    return localStorage.getItem("TokenA")?true:false;
+
+
+  }
   Logout():void{
-    localStorage.removeItem("TokenE");
-    localStorage.removeItem("TokenId");
+    if(!localStorage.getItem("TokenA")){
+
+      localStorage.removeItem("TokenE");
+      localStorage.removeItem("TokenId");
+    }else{
+      localStorage.removeItem("TokenA");
+      localStorage.removeItem("TokenId");
+    }
+
     Swal.fire({
       icon: 'success',
       title: 'Success!',
@@ -62,7 +89,12 @@ export class ApiUsersService {
 
   }
   IsAuthancation():boolean{
-      return localStorage.getItem("TokenE")? true:false;
+      if(!localStorage.getItem("TokenA")){
+
+        return localStorage.getItem("TokenE")? true:false;
+      }else{
+        return true;
+      }
   }
   getAuthSubject():BehaviorSubject<boolean>{
     return this.AuthSubject;

@@ -7,12 +7,12 @@ import { ApiCartsService } from '../../../Services/api-carts.service';
 import { ApiUsersService } from '../../../Services/api-users.service';
 import Swal from 'sweetalert2';
 import swal from 'sweetalert';
-import { Route, Router } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -30,11 +30,10 @@ export class ProductsComponent implements OnInit {
 
   ) {}
 
-  
+
     ngOnInit(): void {
       this._ApiProductsService.getApiProducts().subscribe({
        next:(res)=>{
-        console.log(res);
 
          this.products =res;
        }
@@ -66,6 +65,53 @@ export class ProductsComponent implements OnInit {
               this.router.navigateByUrl(`/Login`);
 
             }
+
+}
+Delete(Id:number):void{
+
+  this._ApiProductsService.deleteItem(Id).subscribe({
+    next: () => {
+
+
+      Swal.fire({
+        title: 'Delete!',
+        text: 'The item was Deleted successfully.',
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Great!'
+      });
+      this._ApiProductsService.getApiProducts().subscribe({
+        next:(res)=>{
+
+          this.products =res;
+        }
+       })
+    },
+    error: (err) => {
+
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'ERROR Add Product on Cart Please try again.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+              });
+    }
+  });
+}
+
+startupDate(product:Iproduct){
+    this._ApiProductsService.startedUpDate(product);
+    console.log(`StartupDate in product TS ${product}`);
+
+}
+
+IsAdmin():boolean{
+  return this._ApiUsersService.DoYouAdmin();
 
 }
 
