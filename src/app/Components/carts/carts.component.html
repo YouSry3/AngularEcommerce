@@ -1,0 +1,51 @@
+<main  class="m-32 ">
+
+
+
+
+
+
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class=" align-middle justify-start text-left ltr:text-left rtl:text-right">
+      <tr>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Price</th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Rating</th>
+      </tr>
+    </thead>
+
+    <tbody class=" justify-center align-middle divide-y divide-gray-200">
+      @for (item of carts; track $index) {
+
+        <tr>
+          <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{item.title}}</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{item.price}}</td>
+          <td class="whitespace-nowrap px-4 py-2 text-gray-700 flex first">
+                    <ng-container *ngFor="let star of [].constructor(item.rating.rate); let i = index">
+            <svg aria-hidden="true" class="h-5 w-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+          </ng-container>
+            </td>
+        </tr>
+      }
+
+
+
+
+
+    </tbody>
+  </table>
+
+  <h1
+     class="text-center ml-6 mt-4 text-[20px] font-medium "
+  >Total :</h1>
+  <h1 class=" text-right mt-3 font-medium text-[20px] text-yellow-300"> {{getAllPrice()}}<span> $</span></h1>
+</div>
+<div class="flex gap-3 max-w-md  text-left  mt-5">
+  <button class="py-2.5 px-6 rounded-lg text-sm font-medium bg-teal-200 text-teal-800">Cancel</button>
+  <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600">Confirm</button>
+</div>
+
+</main>
