@@ -21,6 +21,9 @@ export class ProductsComponent implements OnInit {
    productCurrentAdd:Iproduct = {} as Iproduct;
 
 
+// Add New product   => product.component.html
+// btn Add to Add new product and Router link to AddProductComponent => product.component.ts
+// ApiproductService AddProduct => apiproductservice.ts
 
 
   constructor(private _ApiProductsService:ApiProductsService,
@@ -65,6 +68,11 @@ export class ProductsComponent implements OnInit {
               this.router.navigateByUrl(`/Login`);
 
             }
+
+}
+addToProductNav(){
+  this.router.navigateByUrl(`/Products/AddProduct`);
+  
 
 }
 Delete(Id:number):void{

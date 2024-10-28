@@ -5,12 +5,14 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
 import { LoginComponent } from './Components/login/login.component';
 import { CartsComponent } from './Components/carts/carts.component';
 import { EditProductComponent } from './Components/edit-product/edit-product.component';
+import { AddProductComponent } from './Components/add-product/add-product.component';
 
 export const routes: Routes = [
   { path: 'Main', component: MainComponent },
   { path: 'Products', component: ProductsComponent
   },
   {path:'Products/Edit',component: EditProductComponent},
+  {path:'Products/AddProduct',component: AddProductComponent},
   {path:'Sign-Up',component:SignUpComponent},
   {path:'Login',component:LoginComponent},
   {path:'Carts',component:CartsComponent}

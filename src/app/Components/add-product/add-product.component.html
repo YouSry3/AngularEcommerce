@@ -1,0 +1,68 @@
+
+
+
+
+<div class="container mt-32 mx-auto p-4">
+  <!-- Page Title -->
+  <h1 class="text-3xl font-bold text-[black] mb-6">New product</h1>
+
+  <form (ngSubmit)="Addproduct()" #addProForm="ngForm" class="grid grid-cols-1 gap-6">
+    <!-- Username -->
+
+
+
+
+
+
+    <!-- User First name  and Last name -->
+    <div class="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- User First Name -->
+      <div>
+        <input
+        [(ngModel)]="productForm.title" name="title"
+        type="text"   placeholder="Title" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;" required >
+      </div>
+
+      <!-- User Last name -->
+      <div>
+        <input
+        [(ngModel)]="productForm.price" name="price"
+        type="number"   placeholder="Price" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;" required >
+            </div>
+    </div>
+
+    <div class="p-2">
+      <input
+      [(ngModel)]="productForm.description" name="description"
+      type="text"  placeholder="Description" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;" required >
+        </div>
+
+    <div class="p-2">
+      <input
+      [(ngModel)]="productForm.rating" name="rating"
+      type="number"   placeholder="Rating" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;" required >
+        </div>
+
+    <div class="p-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <input
+        [(ngModel)]="productForm.image" name="image"
+        type="text" placeholder="Url Image" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;" required >
+            </div>
+
+
+    </div>
+
+
+    <!-- Registration Button -->
+    <div class="col-span-full mt-6 p-2">
+      <button
+      [disabled]="addProForm.invalid"
+      type="submit" class="block w-full bg-[#8c0327] hover:bg-[#6b0220] text-white font-bold py-3 px-4 rounded-full" required>
+        Add
+      </button>
+    </div>
+  </form>
+</div>
+
+

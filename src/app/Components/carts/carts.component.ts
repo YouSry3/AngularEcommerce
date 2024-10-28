@@ -23,12 +23,13 @@ export class CartsComponent implements OnInit {
         this.carts = res;
       }
     })
-     this.TotalSeal = 0;
 
 
     }
 
     getAllPrice(){
+      this.TotalSeal = 0;
+
       for (let index = 0; index < this.carts.length; index++) {
           this.TotalSeal = this.TotalSeal + this.carts[index].price;
 
